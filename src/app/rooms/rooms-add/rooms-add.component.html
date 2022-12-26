@@ -1,0 +1,32 @@
+{{ room | json }}
+
+{{ roomAddForm.valid }}
+
+{{ roomAddForm.invalid }}
+
+<form #roomAddForm="ngForm" (ngOnSubmit)="addRoom()">
+  <div class="form-group">
+    <input required class="form-control" type="number" name="roomNumber" placeholder="Room Number" [(ngModel)]="room.roomNumber"/>
+  </div>
+  <div class="form-group">
+    <input required class="form-control" type="number"  name="roomPrice" placeholder="Room Price" [(ngModel)]="room.roomPrice"/>
+  </div>
+  <div class="form-group">
+    <input required class="form-control"  type="number"  name="rating" placeholder="Room Rating"  [(ngModel)]="room.rating"/>
+  </div>
+  <div class="form-group">
+    <input #roomAmenities="ngModel" required class="form-control" type="text" name = "amenities" placeholder="amenities" [(ngModel)]="room.amenities" minlength="5" maxlength="20"/>
+    <div *ngIf="roomAmenities.errors?.['minlength']">
+      {{ roomAmenities.errors | json }}
+    </div>
+  </div>
+  <div class="form-group">
+    <input required class="form-control"  type="datetime" name = "checkInTime" placeholder="checkInTime" [(ngModel)]="room.checkInTime"/>
+  </div>
+  <div class="form-group">
+    <input required class="form-control" type="text" type="text" name="roomType" placeholder="roomType" [(ngModel)]="room.roomType"/>
+  </div>
+  <div>
+    <button class="btn btn-primary" [disabled]="!roomAddForm.valid">Submit</button>
+  </div>
+</form>

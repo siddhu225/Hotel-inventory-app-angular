@@ -1,0 +1,34 @@
+
+<hinv-header></hinv-header>
+<hinv-header></hinv-header>
+<hinv-header></hinv-header>
+
+<!-- text interpolation -->
+<h1>Welcome to {{ hotelName }}</h1>
+<!-- property binding -->
+<div [hidden]="isHidden">
+  no of Rooms
+  <div [innerText]='numberOfRooms'></div>
+</div>
+<!-- event binding -->
+<button (click)="toggle()">toggle</button>
+
+
+<!--
+  DIRECTIVES:
+    1). Structual directives
+    2). Attribute directives
+
+  Structual directives:
+-->
+
+<div class="btn btn-primary" (click)="addRoom()">
+  Add Room
+</div>
+<div *ngIf="rooms.availableRooms > 0">
+  ROOMS LIST
+</div>
+
+<hinv-room-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-room-list>
+
+<router-outlet></router-outlet>
